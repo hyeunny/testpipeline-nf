@@ -141,17 +141,10 @@ class NfcoreTemplate {
                 if (params.plaintext_email) { throw GroovyException('Send plaintext e-mail, not HTML') }
                 // Try to send HTML e-mail using sendmail
                 log.info sendmail_html
-                log.info "logging_proc_out_start ssmtp 9"
-                def proc = [ 'ssmtp', '-t', '-d9' ].execute()
-                proc << sendmail_html
-                
-                def b = new StringBuffer()
-                
-                print "Output: " + proc.text
-                print "Exit code: " + proc.exitValue()
-                println b.toString()
-                
-                log.info "logging_proc_out_end ssmtp 9"
+                log.info "logging_proc_out_start ssmtp 10"
+                def proc = [ 'ssmtp', '-t'].execute()
+                proc << sendmail_html                
+                log.info "logging_proc_out_end ssmtp 10"
 
                 log.info "-${colors.purple}[$workflow.manifest.name]${colors.green} Sent summary e-mail to $email_address (sendmail)-"
             } catch (all) {
