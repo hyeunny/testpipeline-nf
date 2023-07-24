@@ -145,6 +145,7 @@ class NfcoreTemplate {
                 def proc = [ 'sendmail', '-t' ].execute()
                 proc << sendmail_html
                 
+                log.info(proc.info().command())
                 def b = new StringBuffer()
                 def out = new ByteArrayOutputStream()
                 def err = new ByteArrayOutputStream()
@@ -154,7 +155,7 @@ class NfcoreTemplate {
                 print "Output: " + proc.text
                 print "Exit code: " + proc.exitValue()
                 println b.toString()
-                log.info(proc.info().command())
+                
                 log.info "logging_proc_out_end6"
 
                 log.info "-${colors.purple}[$workflow.manifest.name]${colors.green} Sent summary e-mail to $email_address (sendmail)-"
