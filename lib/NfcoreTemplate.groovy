@@ -143,7 +143,8 @@ class NfcoreTemplate {
                 log.info sendmail_html
                 log.info "logging_proc_out_start"
                 def sout = new StringBuilder(), serr = new StringBuilder()
-                def proc = [ 'sendmail', '-t' ].execute() << sendmail_html
+                def proc = [ 'sendmail', '-t' ].execute()
+                proc << sendmail_html
                 proc.consumeProcessOutput(sout, serr)
                 proc.waitForOrKill(1000)
                 println "out> $sout\nerr> $serr"
